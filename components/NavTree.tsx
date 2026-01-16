@@ -4,7 +4,15 @@ import Link from "next/link";
 import type { NavItem } from "@/lib/nav";
 import { useState } from "react";
 
-function Node({ item, depth = 0, onNavigate }: { item: NavItem; depth?: number; onNavigate?: () => void }) {
+function Node({
+  item,
+  depth = 0,
+  onNavigate,
+}: {
+  item: NavItem;
+  depth?: number;
+  onNavigate?: () => void;
+}) {
   const hasChildren = item.children && item.children.length > 0;
   const [open, setOpen] = useState(true);
 
@@ -16,7 +24,7 @@ function Node({ item, depth = 0, onNavigate }: { item: NavItem; depth?: number; 
         {hasChildren ? (
           <button
             onClick={() => setOpen((v) => !v)}
-            className="text-left text-sm text-[color:var(--muted)] hover:text-white transition"
+            className="text-left text-sm text-[color:var(--muted)] hover:text-white transition focus-ring"
             aria-expanded={open}
           >
             {item.title}
@@ -25,7 +33,7 @@ function Node({ item, depth = 0, onNavigate }: { item: NavItem; depth?: number; 
           <Link
             href={item.href}
             onClick={onNavigate}
-            className="text-sm text-[color:var(--muted)] hover:text-white transition"
+            className="text-sm text-[color:var(--muted)] hover:text-white transition focus-ring"
           >
             {item.title}
           </Link>
@@ -47,7 +55,13 @@ function Node({ item, depth = 0, onNavigate }: { item: NavItem; depth?: number; 
   );
 }
 
-export default function NavTree({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => void }) {
+export default function NavTree({
+  items,
+  onNavigate,
+}: {
+  items: NavItem[];
+  onNavigate?: () => void;
+}) {
   return (
     <nav className="space-y-4">
       {items.map((item) => (

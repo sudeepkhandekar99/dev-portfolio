@@ -3,17 +3,17 @@ import Shell from "@/components/Shell";
 export default function HomePage() {
   return (
     <Shell>
-      <div className="max-w-xl space-y-5">
-        <div className="text-sm text-[color:var(--muted)]">家榕 jia rong</div>
-        <div className="text-sm text-[color:var(--muted)]">est. 2007</div>
+      <div className="glass max-w-xl p-7 md:p-8 space-y-5">
+        <div className="text-sm text-[color:var(--muted)]">sudeep khandekar</div>
+        <div className="text-sm text-[color:var(--muted)]">सुदीप खांडेकर </div>
 
         <h1 className="text-lg md:text-xl italic">
           a creative, a designer, and a tinkerer
         </h1>
 
         <p className="text-sm leading-6 text-white/85">
-          Guided by a love for thoughtful, intricate design and the small
-          details that make life feel alive.
+          Guided by a love for thoughtful, intricate design and the small details
+          that make life feel alive.
         </p>
 
         <p className="text-sm leading-6 text-white/85">
@@ -23,9 +23,7 @@ export default function HomePage() {
 
         <div className="pt-6 border-t hairline" />
 
-        <div className="h-56 w-full rounded-xl border hairline bg-white/5 overflow-hidden">
-          {/* placeholder image area */}
-        </div>
+        <div className="h-56 w-full rounded-2xl border hairline bg-white/5 overflow-hidden" />
       </div>
     </Shell>
   );

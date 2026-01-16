@@ -7,6 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <FluidBackground />
+        <div className="dark-overlay" />
         <MobileTopbar />
         {children}
       </body>

@@ -12,14 +12,16 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         </aside>
 
         <aside className="pt-2">
-          <NavTree items={NAV} />
+          <div className="glass-soft p-5">
+            <NavTree items={NAV} />
+          </div>
         </aside>
 
         <main className="pt-2">{children}</main>
       </div>
 
       {/* Mobile single column content (nav handled by topbar) */}
-      <div className="md:hidden px-5 pt-16 pb-10">
+      <div className="md:hidden px-5 pt-20 pb-10">
         <main>{children}</main>
       </div>
     </div>

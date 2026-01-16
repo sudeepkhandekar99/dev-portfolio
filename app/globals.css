@@ -3,9 +3,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
   --ink: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.62);
   --hairline: rgba(255, 255, 255, 0.12);
+
+  /* glass tokens */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-2: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {
@@ -22,7 +29,8 @@
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -31,52 +39,123 @@ body {
   background: #020318;
 }
 
-.hairline {
-  border-color: var(--hairline);
-}
-
 /* subtle text rendering vibe */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* -------- Liquid gradient animation -------- */
+.hairline {
+  border-color: var(--hairline);
+}
+
+/* -----------------------------
+   Glassmorphism utilities
+-------------------------------- */
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(2, 3, 24, 0.55),
+    rgba(2, 3, 24, 0.32)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle highlight sweep */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    900px circle at 20% 10%,
+    rgba(255, 255, 255, 0.14),
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+/* slightly softer glass */
+.glass-soft {
+  background: linear-gradient(135deg, rgba(2, 3, 24, 0.35), rgba(2, 3, 24, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* -----------------------------
+   Liquid gradient background
+-------------------------------- */
 
 .liquid-gradient {
   background:
-    radial-gradient(60% 80% at 20% 30%, #4f46e5aa, transparent 60%),
-    radial-gradient(70% 90% at 80% 20%, #6366f1aa, transparent 60%),
-    radial-gradient(80% 70% at 50% 80%, #7c3aed99, transparent 65%),
-    linear-gradient(180deg, #020318, #060b3a);
+    radial-gradient(
+      60% 80% at 20% 30%,
+      rgba(79, 70, 229, 0.22), 
+      transparent 65%
+    ),
+    radial-gradient(
+      70% 90% at 80% 20%,
+      rgba(99, 102, 241, 0.18),
+      transparent 65%
+    ),
+    radial-gradient(
+      80% 70% at 50% 80%,
+      rgba(124, 58, 237, 0.14), 
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #020318,
+      #04072a
+    );
 
-  background-size: 200% 200%;
-  animation: liquidMove 30s ease-in-out infinite;
+  background-size: 220% 220%;
+  animation: liquidMove 42s ease-in-out infinite;
 }
 
 @keyframes liquidMove {
-  0% {
-    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
-  }
-  25% {
-    background-position: 30% 20%, 70% 10%, 60% 80%, 0% 0%;
-  }
-  50% {
-    background-position: 80% 40%, 20% 30%, 40% 60%, 0% 0%;
-  }
-  75% {
-    background-position: 60% 10%, 40% 50%, 70% 30%, 0% 0%;
-  }
-  100% {
-    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
-  }
+  0%   { background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%; }
+  25%  { background-position: 30% 20%, 70% 10%, 60% 80%, 0% 0%; }
+  50%  { background-position: 80% 40%, 20% 30%, 40% 60%, 0% 0%; }
+  75%  { background-position: 60% 10%, 40% 50%, 70% 30%, 0% 0%; }
+  100% { background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%; }
 }
 
 /* -------- Film grain / texture -------- */
 
 .noise-overlay {
   pointer-events: none;
-  opacity: 0.06;
+  opacity: 0.044;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* small helper for nicer focus ring */
+.focus-ring:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* Global dark veil for readability */
+.dark-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 3, 24, 0.45),
+    rgba(2, 3, 24, 0.65)
+  );
 }
