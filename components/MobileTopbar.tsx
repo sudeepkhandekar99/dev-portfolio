@@ -1,4 +1,5 @@
 "use client";
+import BreathingText from "@/components/fancy/text/breathing-text";
 
 import { useState } from "react";
 import NavTree from "@/components/NavTree";
@@ -12,8 +13,19 @@ export default function MobileTopbar() {
       <header className="md:hidden fixed top-3 left-3 right-3 z-20">
         <div className="glass-soft px-4 py-3 flex items-center justify-between">
           <div className="text-sm">
-            <span className="opacity-90">With Love, </span>
-            <span className="opacity-90">Jia</span>
+            {/* <span className="opacity-90">sudeep k. </span> */}
+            {/* <span className="opacity-90">नमस्ते</span> */}
+            <BreathingText
+                className="opacity-90"
+                as="span"
+                fromFontVariationSettings="'wght' 350"
+                toFontVariationSettings="'wght' 600"
+                transition={{ duration: 2, ease: "easeInOut" }}
+                staggerDuration={0.05}
+                repeatDelay={0.45}
+                >
+            sudeep k.
+            </BreathingText>
           </div>
 
           <button

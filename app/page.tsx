@@ -1,15 +1,18 @@
 import Shell from "@/components/Shell";
+import DraggablePhotoStack from "@/components/DraggablePhotoPile";
+import DraggablePhotoPile from "@/components/DraggablePhotoPile";
+
 
 export default function HomePage() {
   return (
     <Shell>
       <div className="glass max-w-xl p-7 md:p-8 space-y-5">
-        <div className="text-sm text-[color:var(--muted)]">sudeep khandekar</div>
-        <div className="text-sm text-[color:var(--muted)]">सुदीप खांडेकर </div>
-
         <h1 className="text-lg md:text-xl italic">
-          a creative, a designer, and a tinkerer
+          नमस्ते
         </h1>
+
+        {/* <div className="text-sm text-[color:var(--muted)]">sudeep khandekar</div> */}
+        <div className="text-sm text-[color:var(--muted)]">welcome to my little corner on the internet</div>
 
         <p className="text-sm leading-6 text-white/85">
           Guided by a love for thoughtful, intricate design and the small details
@@ -23,7 +26,9 @@ export default function HomePage() {
 
         <div className="pt-6 border-t hairline" />
 
-        <div className="h-56 w-full rounded-2xl border hairline bg-white/5 overflow-hidden" />
+        {/* <div className="h-56 w-full rounded-2xl border hairline bg-white/5 overflow-hidden" /> */}
+        {/* the draggable photo section */}
+        <DraggablePhotoPile />
       </div>
     </Shell>
   );
